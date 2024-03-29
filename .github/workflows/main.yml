@@ -16,15 +16,13 @@ jobs:
           unzip naabu_2.3.0_linux_amd64.zip
           unzip httpx_1.6.0_linux_386.zip
           unzip nuclei.zip
-          ls -ll
           chmod 777 subfinder
           chmod 777 naabu
           chmod 777 httpx
           chmod 777 nuclei
-          ls -ll
     
       - name: subfinder
-        run: ./subfinder -dL input/targets.txt -o domain.txt
+        run: ./subfinder -dL input/targets.txt -all -o domain.txt
 
       - name: naabu httpx
         run: ./naabu -p - -silent | ./httpx -mc 200 -o http_probe.txt

@@ -25,7 +25,7 @@ jobs:
         run: ./subfinder -dL input/targets.txt -all -o domain.txt
 
       - name: naabu httpx
-        run: ./naabu -p - -silent | ./httpx -mc 200 -o http_probe.txt
+        run: ./naabu -list domain.txt -p - -silent | ./httpx -mc 200 -o http_probe.txt
         
       - name: Execute based on type
         run: |

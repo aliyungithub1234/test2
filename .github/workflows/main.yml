@@ -23,9 +23,13 @@ jobs:
           chmod 777 nuclei
           ls -ll
     
-      - name: subfinder naabu httpx
-        run: ./subfinder -dL input/targets.txt -silent | ./naabu -p - -silent | ./httpx -mc 200 -o http_probe.txt
+      - name: subfinder
+        run: ./subfinder -dL input/targets.txt -o domain.txt
 
+      - name: naabu httpx
+        run: ./naabu -p - -silent | ./httpx -mc 200 -o http_probe.txt
+        
       - name: Execute based on type
         run: |
+          cat http_probe.txt
           ./nuclei -header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64)' -list http_probe.txt -stats -at pitchfork -o vuln.txt | tee output/vuln.txt

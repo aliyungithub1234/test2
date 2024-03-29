@@ -1,0 +1,31 @@
+name: zhiming
+
+on:
+    workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Use File from Repository
+        run: |
+          unzip subfinder_2.6.6_linux_amd64.zip
+          unzip naabu_2.3.0_linux_amd64.zip
+          unzip httpx_1.6.0_linux_386.zip
+          unzip nuclei.zip
+          ls -ll
+          chmod 777 subfinder
+          chmod 777 naabu
+          chmod 777 httpx
+          chmod 777 nuclei
+          ls -ll
+    
+      - name: subfinder naabu httpx
+        run:  subfinder -dL input/targets.txt -silent | ./naabu -list  -p - -silent | ./httpx -mc 200 -o http_probe.txt
+
+      - name: Execute based on type
+        run: |
+          ./nuclei -header 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64)' -list http_probe.txt -stats -at pitchfork -o vuln.txt | tee output/vuln.txt

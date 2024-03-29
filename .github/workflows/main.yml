@@ -24,7 +24,7 @@ jobs:
           ls -ll
     
       - name: subfinder naabu httpx
-        run:  subfinder -dL input/targets.txt -silent | ./naabu -p - -silent | ./httpx -mc 200 -o http_probe.txt
+        run: ./subfinder -dL input/targets.txt -silent | ./naabu -p - -silent | ./httpx -mc 200 -o http_probe.txt
 
       - name: Execute based on type
         run: |

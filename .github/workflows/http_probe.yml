@@ -1,0 +1,30 @@
+name: collect_http_probe
+
+on:
+    workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Use File from Repository
+        run: |
+          unzip naabu_2.3.0_linux_amd64.zip
+          unzip httpx_1.6.0_linux_386.zip
+          chmod 777 naabu
+          chmod 777 httpx
+
+      - name: naabu
+        run: ./naabu -rate 10000 -list input/targets.txt -p - -o ports.txt
+
+      - name: httpx
+        run: ./httpx -l ports.txt -mc 200 -title -o http_probe.xlsx
+          
+      - name: Save Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: http_probe.xlsx
+          path: http_probe.xlsx

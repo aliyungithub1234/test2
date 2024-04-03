@@ -21,10 +21,10 @@ jobs:
         run: ./naabu -rate 10000 -list input/targets.txt -p - -o ports.txt
 
       - name: httpx
-        run: ./httpx -l ports.txt -json -o http_probe.json
+        run: ./httpx -l ports.txt -mc 200,301,302 -o http_probe.txt
           
       - name: Save Artifact
         uses: actions/upload-artifact@v2
         with:
           name: http_probe
-          path: http_probe.json
+          path: http_probe.txt

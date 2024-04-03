@@ -1,0 +1,21 @@
+name: test
+
+on:
+    workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Use File from Repository
+        run: |
+          echo test > my_file.txt
+
+      - name: Save Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: output
+          path: my_file.txt

@@ -18,7 +18,7 @@ jobs:
           chmod 777 httpx
 
       - name: naabu
-        run: ./naabu -rate 10000 -list input/targets.txt -p - -o ports.txt
+        run: ./naabu -c 50 -rate 5000 -list input/targets.txt -tp 1000 -o ports.txt
 
       - name: httpx
         run: ./httpx -l ports.txt -mc 200,301,302 -o http_probe.txt

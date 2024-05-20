@@ -16,6 +16,8 @@ jobs:
       - name: Install dirsearch
         run: |
           sudo python -m pip install dirsearch
+      - name: Checkout Repo
+        uses: actions/checkout@v2
       - name: dirsearch run
         run: dirsearch -l input/urls.txt -w input/passwd.txt -i 200 -o login_page.txt --format=json
         

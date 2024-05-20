@@ -1,0 +1,26 @@
+name: dirsearch
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.8]
+    steps:
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dirsearch
+        run: |
+          sudo python -m pip install dirsearch
+      - name: dirsearch run
+        run: dirsearch -l input/urls.txt -w input/passwd.txt -i 200 -o login_page.txt --format=json
+        
+      - name: Save Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: login_page
+          path: login_page.txt

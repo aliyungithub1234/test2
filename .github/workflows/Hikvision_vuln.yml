@@ -13,10 +13,10 @@ jobs:
       - name: Use File from Repository
         run: |
           unzip afrog_3.0.5_linux_amd64.zip
-          chmod 777 ./afrog_3.0.5_linux_amd64/afrog
+          chmod 777 afrog
 
       - name: nuclei
-        run: /afrog_3.0.5_linux_amd64/afrog -T input/targets.txt -s Hikvision -o vuln.html
+        run: afrog -T input/targets.txt -s Hikvision -o vuln.html
 
       - name: Save Artifact
         uses: actions/upload-artifact@v2

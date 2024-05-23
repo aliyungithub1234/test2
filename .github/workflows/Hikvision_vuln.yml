@@ -13,10 +13,10 @@ jobs:
       - name: Use File from Repository
         run: |
           unzip afrog_3.0.5_linux_amd64.zip
-          ll
+          ls
           chmod 777 afrog
 
-      - name: nuclei
+      - name: afrog
         run: afrog -T input/targets.txt -s Hikvision -o vuln.html
 
       - name: Save Artifact

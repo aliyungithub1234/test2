@@ -17,7 +17,7 @@ jobs:
           chmod 777 afrog
 
       - name: afrog
-        run: ./afrog -T input/targets.txt -s Hikvision -o vuln.html
+        run: ./afrog -T input/targets.txt -s hikvision -rl 500 -c 50 -o vuln.html
 
       - name: Save Artifact
         uses: actions/upload-artifact@v2

@@ -60,13 +60,8 @@ def zhanzhang_test():
     sheet = wb['问题隐患填写模板']
     max_row = sheet.max_row - xlsx_num
     flag_num = 1
-    proxies = {"https":"127.0.0.1:10809"}
+    proxies = {}
     for i in range(0,100000):
-        if flag_num >5:
-            proxies = {"https":"127.0.0.1:10809"}
-        if flag_num >10:
-            proxies = {}
-            flag_num = 1
         xlsx_num += 1
         try:
             domain_name = sheet[f"J{xlsx_num}"].value

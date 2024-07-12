@@ -60,8 +60,7 @@ def zhanzhang_test():
     sheet = wb['问题隐患填写模板']
     max_row = sheet.max_row - xlsx_num
     flag_num = 1
-    proxies = {}
-    for i in range(0,100000):
+    for i in range(0,1000):
         xlsx_num += 1
         try:
             domain_name = sheet[f"J{xlsx_num}"].value
@@ -69,9 +68,10 @@ def zhanzhang_test():
             tld = tldextract.extract(domain_name)
             main_domain = tld.domain + '.' + tld.suffix
             print(f"爬取第{xlsx_num-2}条,:{main_domain}")
-            rp = requests.get(f"https://icp.chinaz.com/{main_domain}", timeout=15, verify=False,proxies=proxies)
+            rp = requests.get(f"https://icp.chinaz.com/{main_domain}", timeout=15, verify=False)
             #time.sleep(5)
             content = rp.text
+            print(content)
             parse_html = etree.HTML(content)
             companyName = parse_html.xpath('//*[@id="companyName"]/text()')
             if len(companyName) == 0:
@@ -83,7 +83,7 @@ def zhanzhang_test():
                 #time.sleep(10)
                 time.sleep(2)
                 rp = requests.get(companyHref, timeout=15,
-                                  verify=False,proxies=proxies)
+                                  verify=False)
                 
                 content = rp.text
                 #print(content)
@@ -95,7 +95,7 @@ def zhanzhang_test():
                     #time.sleep(15)
                     time.sleep(2)
                     rp = requests.get(second_companyHref, timeout=15,
-                                      verify=False,proxies=proxies)
+                                      verify=False)
                     #time.sleep(5)
                     content = rp.text
                     parse_html = etree.HTML(content)
@@ -121,9 +121,8 @@ def zhanzhang_test():
                     sheet[f"I{xlsx_num}"] = ip_address
                     wb.save("wordpress.xlsx")
         except Exception as e:
-            #traceback.print_exc()
-            #print("异常：",e)
-            pass
+            traceback.print_exc()
+            print("异常：",e)
 
 
 if __name__ == "__main__":

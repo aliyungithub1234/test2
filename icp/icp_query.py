@@ -70,10 +70,10 @@ def zhanzhang_test():
             tld = tldextract.extract(domain_name)
             main_domain = tld.domain + '.' + tld.suffix
             print(f"爬取第{xlsx_num-2}条,:{main_domain}")
-            rp = requests.get(f"https://icp.chinaz.com/{main_domain}", timeout=15,headers=burp0_headers, cookies=burp0_cookies,verify=False)
+            rp = requests.get(f"https://icp.chinaz.com/{main_domain}", timeout=30,headers=burp0_headers, cookies=burp0_cookies,verify=False)
             #time.sleep(5)
             content = rp.text
-            print(content)
+            #print(content)
             parse_html = etree.HTML(content)
             companyName = parse_html.xpath('//*[@id="companyName"]/text()')
             if len(companyName) == 0:
@@ -84,8 +84,7 @@ def zhanzhang_test():
             if org[0] =="企业":
                 #time.sleep(10)
                 time.sleep(2)
-                rp = requests.get(companyHref, timeout=15,headers=burp0_headers, cookies=burp0_cookies,verify=False)
-                
+                rp = requests.get(companyHref, timeout=30,headers=burp0_headers, cookies=burp0_cookies,verify=False)
                 content = rp.text
                 #print(content)
                 parse_html = etree.HTML(content)
@@ -95,7 +94,7 @@ def zhanzhang_test():
                     print(second_companyHref)
                     #time.sleep(15)
                     time.sleep(2)
-                    rp = requests.get(second_companyHref, timeout=15,headers=burp0_headers, cookies=burp0_cookies,verify=False)
+                    rp = requests.get(second_companyHref, timeout=30,headers=burp0_headers, cookies=burp0_cookies,verify=False)
                     #time.sleep(5)
                     content = rp.text
                     parse_html = etree.HTML(content)
@@ -121,7 +120,7 @@ def zhanzhang_test():
                     sheet[f"I{xlsx_num}"] = ip_address
                     wb.save("wordpress.xlsx")
         except Exception as e:
-            traceback.print_exc()
+            #traceback.print_exc()
             print("异常：",e)
 
 

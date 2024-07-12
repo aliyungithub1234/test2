@@ -121,8 +121,8 @@ def zhanzhang_test():
                     sheet[f"I{xlsx_num}"] = ip_address
                     wb.save("wordpress.xlsx")
         except Exception as e:
-            traceback.print_exc()
-            print("异常：",e)
+            #traceback.print_exc()
+            #print("异常：",e)
 
 
 if __name__ == "__main__":

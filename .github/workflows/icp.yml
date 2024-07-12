@@ -15,12 +15,13 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install requirements
         run: |
-          sudo python -m pip install -r requirements.txt
+          sudo python -m pip install -r icp/requirements.txt
       - name: Checkout Repo
         uses: actions/checkout@v2
       - name: icp run
         run: 
-          python icp_query.py
+          curl -o https://raw.githubusercontent.com/aliyungithub1234/test2/main/icp/wordpress.xlsx
+          python icp/icp_query.py
       - name: Save Artifact
         uses: actions/upload-artifact@v2
         with:

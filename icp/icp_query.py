@@ -53,6 +53,8 @@ def get_company_address(address):
     except Exception as e:
         return {"status": "fail"}
 
+burp0_cookies = {"speedworldhost": "uyislam.com", "Hm_lvt_aecc9715b0f5d5f7f34fba48a3c511d6": "1716186294", "auth-token": "undefined", "user-temp": "4affdfcb-496e-1601-76ad-b777bcbdc602", "toolbox_urls": "www.gamer520.com|api.sshttp.cn|221.206.194.54|jd.com|139.9.122.19|https%3a%2f%2fuyislam.com|www.at0086.com|www.temamotor.com|www.qdahgc.com|www.zhixuantj.com", "pinghost": "www.gamer520.com", "qHistory": "aHR0cDovL3Rvb2wuY2hpbmF6LmNvbV/nq5nplb/lt6Xlhbd8aHR0cDovL2lwLmNoaW5hei5jb20vaXBiYXRjaC9fSVDmibnph4/mn6Xor6J8Ly9pcC50b29sLmNoaW5hei5jb20vX0lQ5p+l6K+ifC8vaWNwLmNoaW5hei5jb20vX+e9keermeWkh+ahiOafpeivog==", "ucvalidate": "129d3a5c-7bb9-94dd-88d9-27e078ab97a9", "cz_statistics_visitor": "fd0a2ea3-23b0-eafd-3025-36adb379e47b", "Hm_lvt_ca96c3507ee04e182fb6d097cb2a1a4c": "1720418560,1720485596,1720659463,1720746407", "HMACCOUNT": "735F56C6DE938459", "Hm_lvt_32e161892d770dca4a9d436a5764a01a": "1720659463,1720746407", "Hm_lpvt_32e161892d770dca4a9d436a5764a01a": "1720746410", "JSESSIONID": "E8EB8F48814EF6C0B43DAD6FEEC2638E", "Hm_lpvt_ca96c3507ee04e182fb6d097cb2a1a4c": "1720746414"}
+burp0_headers = {"Pragma": "no-cache", "Cache-Control": "no-cache", "Sec-Ch-Ua": "\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"", "Sec-Ch-Ua-Mobile": "?0", "Sec-Ch-Ua-Platform": "\"Windows\"", "Upgrade-Insecure-Requests": "1", "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36", "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7", "Sec-Fetch-Site": "same-origin", "Sec-Fetch-Mode": "navigate", "Sec-Fetch-User": "?1", "Sec-Fetch-Dest": "document", "Referer": "https://icp.chinaz.com/", "Accept-Encoding": "gzip, deflate", "Accept-Language": "zh-CN,zh;q=0.9", "Sec-Gpc": "1", "Priority": "u=0, i", "Connection": "close"}
 
 def zhanzhang_test():
     global xlsx_num
@@ -68,7 +70,7 @@ def zhanzhang_test():
             tld = tldextract.extract(domain_name)
             main_domain = tld.domain + '.' + tld.suffix
             print(f"爬取第{xlsx_num-2}条,:{main_domain}")
-            rp = requests.get(f"https://icp.chinaz.com/{main_domain}", timeout=15, verify=False)
+            rp = requests.get(f"https://icp.chinaz.com/{main_domain}", timeout=15,headers=burp0_headers, cookies=burp0_cookies,verify=False)
             #time.sleep(5)
             content = rp.text
             print(content)
@@ -82,8 +84,7 @@ def zhanzhang_test():
             if org[0] =="企业":
                 #time.sleep(10)
                 time.sleep(2)
-                rp = requests.get(companyHref, timeout=15,
-                                  verify=False)
+                rp = requests.get(companyHref, timeout=15,headers=burp0_headers, cookies=burp0_cookies,verify=False)
                 
                 content = rp.text
                 #print(content)
@@ -94,8 +95,7 @@ def zhanzhang_test():
                     print(second_companyHref)
                     #time.sleep(15)
                     time.sleep(2)
-                    rp = requests.get(second_companyHref, timeout=15,
-                                      verify=False)
+                    rp = requests.get(second_companyHref, timeout=15,headers=burp0_headers, cookies=burp0_cookies,verify=False)
                     #time.sleep(5)
                     content = rp.text
                     parse_html = etree.HTML(content)

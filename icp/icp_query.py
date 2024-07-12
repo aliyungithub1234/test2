@@ -123,6 +123,7 @@ def zhanzhang_test():
         except Exception as e:
             #traceback.print_exc()
             #print("异常：",e)
+            pass
 
 
 if __name__ == "__main__":

@@ -20,7 +20,7 @@ jobs:
           sudo python -m pip install -r icp/requirements.txt
       - name: savexlsx
         run: 
-          curl -o https://raw.githubusercontent.com/aliyungithub1234/test2/main/icp/wordpress.xlsx
+          curl -O https://raw.githubusercontent.com/aliyungithub1234/test2/main/icp/wordpress.xlsx
       - name: icp run
         run: 
           python icp/icp_query.py

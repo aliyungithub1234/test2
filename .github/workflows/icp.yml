@@ -23,7 +23,7 @@ jobs:
           curl -O https://raw.githubusercontent.com/aliyungithub1234/test2/main/icp/wordpress.xlsx
       - name: icp run
         run: 
-          python icp/icp_query.py
+          sudo python icp/icp_query.py
       - name: Save Artifact
         uses: actions/upload-artifact@v2
         with:

@@ -25,7 +25,7 @@ jobs:
         run: python bak/bak.py -f bak/urls.txt
         
       - name: Save Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: result
           path: result.txt

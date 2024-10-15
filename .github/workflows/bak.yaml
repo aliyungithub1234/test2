@@ -22,7 +22,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
       - name: run
-        run: python bak/bak.py -f bak/urls.txt
+        run: sudo python bak/bak.py -f bak/urls.txt
         
       - name: Save Artifact
         uses: actions/upload-artifact@v4

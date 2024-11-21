@@ -72,11 +72,11 @@ def scan_target(target, proxy, results, lock):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
+    if len(sys.argv) != 1:
         print("Usage: python detect_iis_shortname.py targets.txt")
         sys.exit(1)
 
-    proxy = "127.0.0.1:10809"  # 示例: "127.0.0.1:8080" 使用 HTTP 代理
+    proxy = None # 示例: "127.0.0.1:8080" 使用 HTTP 代理
     targets_file = sys.argv[1]
 
     # 读取目标
@@ -110,7 +110,7 @@ if __name__ == "__main__":
     target_queue.join()
 
     # 保存结果
-    with open("vulnerable_targets.txt", "w") as f:
+    with open("result.txt", "w") as f:
         f.write("\n".join(results))
 
     print("[+] Vulnerability detection complete!")

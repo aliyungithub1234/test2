@@ -87,7 +87,7 @@ if __name__ == "__main__":
     results = []  # 存储检测到漏洞的目标
     lock = threading.Lock()  # 确保线程安全
     threads = []
-    max_threads = 10  # 设置最大线程数
+    max_threads = 100  # 设置最大线程数
 
     # 创建线程池
     target_queue = queue.Queue()

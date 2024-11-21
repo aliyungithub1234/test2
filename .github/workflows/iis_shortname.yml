@@ -19,7 +19,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
       - name: run
-        run: sudo python detect_iis_shortname.py -f urls.txt
+        run: sudo python iis/detect_iis_shortname.py -f iis/urls.txt
         
       - name: Save Artifact
         uses: actions/upload-artifact@v4

@@ -72,13 +72,12 @@ def scan_target(target, proxy, results, lock):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 1:
+    if len(sys.argv) != 2:
         print("Usage: python detect_iis_shortname.py targets.txt")
-        sys.exit(1)
 
     proxy = None # 示例: "127.0.0.1:8080" 使用 HTTP 代理
     targets_file = sys.argv[1]
-
+    print(targets_file)
     # 读取目标
     with open(targets_file, "r") as f:
         targets = [line.strip() for line in f if line.strip()]

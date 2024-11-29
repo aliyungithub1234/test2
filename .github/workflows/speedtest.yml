@@ -1,0 +1,23 @@
+name: speedtest
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.8]
+    steps:
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install 
+        run: |
+          sudo python -m pip install speedtest-cli
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      - name: run
+        run: sudo speedtest-cli
+       
